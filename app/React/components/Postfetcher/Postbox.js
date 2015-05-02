@@ -1,6 +1,6 @@
 import PostList from './PostList';
 import FetchPosts from './FetchPosts';
-
+import request from "superagent";
 var Postbox = React.createClass({
 
     getInitialState: function () {
@@ -13,20 +13,24 @@ var Postbox = React.createClass({
 
     fetcher: function () {
 
-        var url = '/posts';
+        var url = 'http://127.0.0.1:3000/api/bears';
 
         this.setState({ posts: [] });
 
-        $.get(url, (result) => {
-            if (result.length > 0) {
+        request
+            .get(url)
+            .end((err, res) => {
 
-                console.log(result);
+                if(res.status === 200) {
+                    console.log(res.status)
+                    var result = res.body;
 
-                var posts = this.state.posts.concat(result);
+                    var posts = this.state.posts.concat(result);
 
-                this.setState({posts});
-            }
-        });
+                    this.setState({posts});
+                }
+
+            });
     },
 
     render: function () {

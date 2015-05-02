@@ -3,7 +3,7 @@ var PostList = React.createClass({
     render: function() {
 
         var displayPost = function(post) {
-            return <li key={post.id}>ID: {post.id}. Title: <strong>{post.title}</strong> <p>{post.body}</p></li>
+            return <li key={post._id}>ID: {post._id}. Title: <strong>{post.name}</strong> <p>{post.body}</p></li>
         };
 
         // var displayPost = (post) => <li>{post}</li>
